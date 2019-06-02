@@ -5,10 +5,10 @@
 class AuthService {
 
     constructor(auth_api_url) {
-
         this.auth_api_url = auth_api_url;
         this.fetch = this.fetch.bind(this);
         this.login = this.login.bind(this);
+        this.signup = this.signup.bind(this);
     }
 
     login(username, password) {
@@ -24,9 +24,22 @@ class AuthService {
         })
     }
 
+    signup(username, password) {
+        return this.fetch(this.auth_api_url, {
+            method: "POST",
+            body: JSON.stringify({
+                username,
+                password
+            })
+        }).then(res => {
+            this.setToken(res.token);
+            return Promise.resolve(res)
+        })
+    }
+
     loggedIn() {
         // TODO: Check if token is expired using 'jwt-decode'
-        // TODO: npm install jwt-decode
+        // TODO: npm install jwt-decode https://medium.com/@romanchvalbo/how-i-set-up-react-and-node-with-json-web-token-for-authentication-259ec1a90352
         /*
         if (jwtDecode(token).exp < Date.now() / 1000) {
             // Do something

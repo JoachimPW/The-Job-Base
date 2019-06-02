@@ -64,7 +64,10 @@ var Schema = mongoose.Schema;
 // Open paths that does not need login
 let openPaths = [
     '/api/users/authenticate',
+    '/http://localhost:3000/api/users/authenticate',
+    '/http://localhost:8080/api/users/authenticate',
     '/api/users/create',
+    
     '/my_app'
 ];
 
@@ -86,6 +89,7 @@ const users = [
 ];
 
 const data = []
+let Reviews = []
 
 
 /****** Routes ******/
@@ -95,6 +99,9 @@ app.use('/api/tasks', tasksRouter);
 // Mongoose kald ind som data - 
 let usersRouter = require('./users_router')(users);
 app.use('/api/users', usersRouter);
+
+let reviewsRouter = require('./reviews_router')(Reviews);
+app.use('/api/reviews', reviewsRouter)
 
 /****** Error handling ******/
 app.use(function (err, req, res, next) {
