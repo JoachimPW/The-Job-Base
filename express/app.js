@@ -67,8 +67,11 @@ let openPaths = [
     '/http://localhost:3000/api/users/authenticate',
     '/http://localhost:8080/api/users/authenticate',
     '/api/users/create',
-    
-    '/my_app'
+    '/api/jobs/newCategory',    
+    '/my_app',
+    '/api/jobs/categories',
+    "/api/jobs/newLocation",
+    "/api/jobs/locations"
 ];
 
 // Validate the user using authentication
@@ -90,6 +93,7 @@ const users = [
 
 const data = []
 let Reviews = []
+let Jobs = []
 
 
 /****** Routes ******/
@@ -102,6 +106,9 @@ app.use('/api/users', usersRouter);
 
 let reviewsRouter = require('./reviews_router')(Reviews);
 app.use('/api/reviews', reviewsRouter)
+
+let jobsRouter = require('./jobs_router')(Jobs);
+app.use('/api/jobs', jobsRouter)
 
 /****** Error handling ******/
 app.use(function (err, req, res, next) {

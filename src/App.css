@@ -6,3 +6,71 @@
 h4 {
     text-align: center;
 }
+
+.category {
+    background-color: #E8E8E8;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 25px;
+}
+
+.category:hover {
+    border: 1px solid lightblue;
+    -webkit-box-shadow: 11px 11px 17px -8px rgba(0, 0, 0, 0.58);
+    -moz-box-shadow: 11px 11px 17px -8px rgba(0, 0, 0, 0.58);
+    box-shadow: 11px 11px 17px -8px rgba(0, 0, 0, 0.58);
+}
+
+.logOut {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.logOut form {
+    padding: 15px;
+}
+
+.logOut button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.logOut button:hover {
+    background-color: #3B9E40
+}
+
+.username {
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    left: 0;
+}
+
+.backBtn button {
+    padding: 5px 20px 5px 20px;
+    background-color: #e7e7e7; 
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+
+.backBtn button svg {
+    margin-bottom: 2px;
+}
+
+.search {
+    border:1px solid black;
+}

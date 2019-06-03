@@ -24,22 +24,9 @@ export default class Login extends Component {
 
     componentDidMount() {
         console.log("App component has mounted");
-
-        // TODO: Move this to a Login component
-        this.Auth.login(
-            this.state.username,
-            this.state.password
-        )
-            .then(response => {
-                console.log("Authentication:", response.msg);
-                this.getData();
-            })
-            .catch(error => {
-                // TODO: Inform the user about the error
-                console.error("Error authenticating:", error);
-            });
-    }
-
+        // TJEK OM TOKEN ER UDLØBET
+        // TODO: Move this to a Login component       
+    }  
 
     onChangeUsername(event) {
         this.setState({
@@ -54,11 +41,13 @@ export default class Login extends Component {
     }
 
     handleLoginInput(event) {
-        this.Auth.login(this.state.username, this.state.password)
+        event.preventDefault()
+        this.props.loginToApp(this.state.username, this.state.password)       
         console.log(this.state.username, this.state.password)
     }
 
     handleSignupInput(event) {
+        event.preventDefault()
         this.Signup.signup(this.state.username, this.state.password)
     }
 
@@ -76,6 +65,7 @@ export default class Login extends Component {
                         <label for="password">Password</label>
                         <input value={this.state.password} onChange={this.onChangePassword} type="password"
                             className="form-control" placeholder="Password" />
+                            <p>{this.props.res}</p>
                     </div>
                     <button type="submit" onClick={this.handleLoginInput} className="btn btn-primary">Login</button>
                     <button onClick={this.handleSignupInput} style={{ marginLeft: "25px" }} className="btn btn-success">Signup</button>
