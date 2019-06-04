@@ -8,6 +8,7 @@ import Category from './Category'
 import AddTask from "./AddTask";
 import Login from './Login'
 import Job from './Job'
+import Location from './Location'
 import { IoIosArrowBack } from "react-icons/io";
 
 import AuthService from './AuthService';
@@ -25,6 +26,7 @@ class App extends Component {
             todoList: [],
             categories: [],
             locations: [],
+            jobs: [],
             loggedIn: false,
             token: "",
             res: "",
@@ -35,9 +37,11 @@ class App extends Component {
         this.addTask = this.addTask.bind(this);
         this.setDone = this.setDone.bind(this);
         this.getData = this.getData.bind(this);
+        this.getJobs = this.getJobs.bind(this);
         this.getLocations = this.getLocations.bind(this);
         this.loginToApp = this.loginToApp.bind(this);
         this.goBack = this.goBack.bind(this);
+        this.getJobsFromCategory = this.getJobsFromCategory.bind(this);
 
 
     }
@@ -60,7 +64,9 @@ class App extends Component {
         });
         console.log("App component has mounted");
         this.getData();
+        this.getJobs();
         this.getLocations();
+        
 
     }
 
@@ -99,6 +105,19 @@ class App extends Component {
                 locations: data
             })
         })
+    }
+
+    async getJobs(){
+        await this.Auth.fetch(`${this.API_URL}/jobs`)
+        .then(jobs => {
+            this.setState({
+                jobs: jobs
+            })
+        })
+    }
+
+    getJobsFromCategory(category) {
+        return this.state.jobs.filter((elm) => elm.category.includes(category))
     }
 
     goBack() {
@@ -180,7 +199,7 @@ class App extends Component {
                                 <br />
                                 <br />
                                 <Switch>
-                                    <Route exact path={"/"}
+                                    <Route exact path="/(jobs|)"
                                         render={(props) =>
                                             <React.Fragment>
                                                 <Category {...props} categories={this.state.categories} />
@@ -188,7 +207,33 @@ class App extends Component {
                                         }
                                     />
                                 </Switch>
-                                <Job locations={this.state.locations}></Job>
+                                <Switch>
+                                    <Route exact path={"/jobs/:category"}
+                                    render={(props) =>
+                                        <React.Fragment>
+                                           
+                                        <Job {...props} 
+                                        category = {props.match.params.category}
+                                        jobs={this.state.jobs} 
+                                        locations={this.state.locations}/> 
+                                       
+                                        </React.Fragment>
+                                    }
+                                    />
+                                </Switch>
+
+                                <Switch>
+                                    <Route exact path={"/jobs/:category/:location"}
+                                    render={(props) => 
+                                    <React.Fragment>
+                                        <Job {...props}
+                                        />
+
+                                    </React.Fragment>}
+                                    />
+                                    
+                                </Switch>
+                                
                             </div>
                             <div className="col-sm" />
                         </div>

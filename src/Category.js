@@ -9,7 +9,7 @@ export default class Category extends Component {
             this.props.categories.forEach((elm) => {
                 list.push(<React.Fragment>
                     <div className="category">
-                    <Link to={{pathname: `/category/${elm.title}`}} style={{textDecoration: "none", color: "black"}}>
+                    <Link to={{pathname: `/jobs/${elm.title}`}} style={{textDecoration: "none", color: "black"}}>
                         <h2>{elm.title}</h2>
                         <p>{elm.description}</p>
                         </Link>
@@ -21,8 +21,6 @@ export default class Category extends Component {
             return (
                 <div>
                     {list}
-
-
                 </div>
             )
         }

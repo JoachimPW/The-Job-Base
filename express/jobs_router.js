@@ -15,11 +15,41 @@ module.exports = (Jobs) => {
         location: String
     })
 
+    var JobSchema = new Schema({
+        title: String,
+        description: String,
+        category: String,
+        company: String,
+        email: String,
+        location: String
+    })
+
+    var Job = mongoose.model("Job", JobSchema)
+
     var Category = mongoose.model('Category', CategorySchema)
 
     var Location = mongoose.model('Location', LocationSchema)
 
     var Jobs = []
+
+    router.post("/newJob", (req, res) => {
+        var newJob = new Job(req.body)
+        newJob.save(function (err, newJob) {
+            if (err) {
+                console.log(err)
+            }
+            res.json(201, newJob)
+            console.log("Job added", newJob)
+        })
+    })
+
+    router.get("/", (req, res) => {
+        Job.find({}, (err, jobs) => {
+            if(err) {console.log(err)}
+            res.send(jobs)
+        })
+        
+    })
 
     router.post("/newCategory", (req, res) => {
         var newCategory = new Category(req.body)
