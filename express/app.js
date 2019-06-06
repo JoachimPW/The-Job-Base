@@ -63,18 +63,13 @@ mongoose.connect(process.env.dbUrl, (err) => {
 var Schema = mongoose.Schema;
 
 const jobCatPath = pathToRegexp('/jobs/:category');
-const searchPath_api = pathToRegexp('/api/jobs/find/cat/:category/city/:city');
-const searchPath_react = pathToRegexp('/find/cat/:category/city/:city')
-const jobPath_react = pathToRegexp('/job/:id')
 let openPaths = [
     '/api/users/authenticate',
     '/api/jobs/city',
     '/api/jobs/category',
     '/api/jobs',
-    jobCatPath,
-    searchPath_api,
-    searchPath_react,
-    jobPath_react
+    jobCatPath
+    
 ];
 
 let openPaths = [
