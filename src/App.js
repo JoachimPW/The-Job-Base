@@ -126,8 +126,8 @@ class App extends Component {
         })
     }
 
-    async getJobs(){
-        await this.Auth.fetch(`${this.API_URL}/jobs`)
+    getJobs(){
+        this.Auth.fetch(`${this.API_URL}/jobs`)
         .then(jobs => {
             this.setState({
                 jobs: jobs
