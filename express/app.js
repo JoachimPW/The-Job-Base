@@ -65,7 +65,7 @@ var Schema = mongoose.Schema;
 
 const jobCatPath = pathToRegexp('/jobs/:category');
 const jobCatLocPath = pathToRegexp('/jobs/:category/:location')
-const jobCatLocPathJob = pathToRegexp('/jobs/:category/:location/:job')
+const jobCatLocPathJob = pathToRegexp('/jobs/:category/:location/:title')
 let openPaths = [
     '/api/users/authenticate',    
     '/api/users/create',
