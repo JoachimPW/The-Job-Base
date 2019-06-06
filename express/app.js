@@ -64,13 +64,15 @@ var Schema = mongoose.Schema;
 
 
 const jobCatPath = pathToRegexp('/jobs/:category');
+const jobCatLocPath = pathToRegexp('/jobs/:category/:location')
+const jobCatLocPathJob = pathToRegexp('/jobs/:category/:location/:job')
 let openPaths = [
     '/api/users/authenticate',    
     '/api/users/create',
     '/api/jobs/location',
     '/api/jobs/newCategory',    
     '/my_app',
-    '/jobs/:category',
+    '/api/jobs/categories',
     "/jobs/:category/:location",
     'jobs/categories/locations',
     "/api/jobs/newLocation",
@@ -81,7 +83,8 @@ let openPaths = [
     "/newjob",
     "/search",
     "/favicon.ico",
-    jobCatPath
+    jobCatPath,
+    jobCatLocPath
 ];
 
 // Validate the user using authentication
