@@ -62,16 +62,8 @@ mongoose.connect(process.env.dbUrl, (err) => {
 
 var Schema = mongoose.Schema;
 
-const jobCatPath = pathToRegexp('/jobs/:category');
-let openPaths = [
-    '/api/users/authenticate',
-    '/api/jobs/city',
-    '/api/jobs/category',
-    '/api/jobs',
-    jobCatPath
-    
-];
 
+const jobCatPath = pathToRegexp('/jobs/:category');
 let openPaths = [
     '/api/users/authenticate',    
     '/api/users/create',
@@ -88,7 +80,8 @@ let openPaths = [
     "/postedjobs",
     "/newjob",
     "/search",
-    "/favicon.ico"
+    "/favicon.ico",
+    jobCatPath
 ];
 
 // Validate the user using authentication
