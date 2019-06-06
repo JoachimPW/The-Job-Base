@@ -7,6 +7,7 @@ const app = express();
 const checkJwt = require('express-jwt');    // Check for access tokens automatically
 const bcrypt = require('bcrypt');           // Used for hashing passwords!
 var mongoose = require('mongoose')
+const pathToRegexp = require('path-to-regexp');
 app.use(express.static(path.join(__dirname, '../build')));
 
 /****** Configuration *****/
@@ -61,7 +62,21 @@ mongoose.connect(process.env.dbUrl, (err) => {
 
 var Schema = mongoose.Schema;
 
-// Open paths that does not need login
+const jobCatPath = pathToRegexp('/jobs/:category');
+const searchPath_api = pathToRegexp('/api/jobs/find/cat/:category/city/:city');
+const searchPath_react = pathToRegexp('/find/cat/:category/city/:city')
+const jobPath_react = pathToRegexp('/job/:id')
+let openPaths = [
+    '/api/users/authenticate',
+    '/api/jobs/city',
+    '/api/jobs/category',
+    '/api/jobs',
+    jobCatPath,
+    searchPath_api,
+    searchPath_react,
+    jobPath_react
+];
+
 let openPaths = [
     '/api/users/authenticate',    
     '/api/users/create',
