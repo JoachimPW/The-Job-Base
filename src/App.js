@@ -38,7 +38,6 @@ class App extends Component {
 
         this.handleLogout = this.handleLogout.bind(this)
         this.addTask = this.addTask.bind(this);
-        this.setDone = this.setDone.bind(this);
         this.getData = this.getData.bind(this);
         this.getJobs = this.getJobs.bind(this);
         this.getLocations = this.getLocations.bind(this);

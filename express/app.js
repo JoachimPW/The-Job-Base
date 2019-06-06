@@ -63,9 +63,7 @@ var Schema = mongoose.Schema;
 
 // Open paths that does not need login
 let openPaths = [
-    '/api/users/authenticate',
-    '/http://localhost:3000/api/users/authenticate',
-    '/http://localhost:8080/api/users/authenticate',
+    '/api/users/authenticate',    
     '/api/users/create',
     '/api/jobs/location',
     '/api/jobs/newCategory',    
