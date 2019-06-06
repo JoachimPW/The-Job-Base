@@ -163,21 +163,7 @@ class App extends Component {
             })
     }
 
-    setDone(id, done) {
-        let task = this.state.todoList.find(elm => elm.id === id);
-        task.done = done;
-
-        this.Auth.fetch(`${this.API_URL}/tasks/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(task)
-        })
-            .then(result => {
-                this.getData();
-            })
-            .catch(error => {
-                console.error("Error when setting done: ", error);
-            })
-    }    
+   
 
     filterByTitle(title){
         return this.state.jobs.find((elm) => elm.title === title)
