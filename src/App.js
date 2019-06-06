@@ -8,6 +8,7 @@ import Category from './Category'
 import AddTask from "./AddTask";
 import Login from './Login'
 import Job from './Job'
+import JobList from './JobList'
 import Location from './Location'
 import { IoIosArrowBack } from "react-icons/io";
 
@@ -41,13 +42,16 @@ class App extends Component {
         this.getLocations = this.getLocations.bind(this);
         this.loginToApp = this.loginToApp.bind(this);
         this.goBack = this.goBack.bind(this);
-        this.getJobsFromCategory = this.getJobsFromCategory.bind(this);
+        this.getJobsFromCategory = this.getJobsFromCategory.bind(this);      
+
+        this.filterByTitle = this.filterByTitle.bind(this);
 
 
     }
     SOCKET_URL = `${this.API_URL}/my_app`;
 
-    componentDidMount() {
+    componentDidMount() { 
+              
         this.setState({
             token: localStorage.getItem("token")
         })
@@ -65,9 +69,7 @@ class App extends Component {
         console.log("App component has mounted");
         this.getData();
         this.getJobs();
-        this.getLocations();
-        
-
+        this.getLocations();           
     }
 
     async loginToApp(username, password) {
@@ -155,9 +157,12 @@ class App extends Component {
                 this.getData();
             })
             .catch(error => {
-                // TODO: Inform the user about the error
                 console.error("Error when setting done: ", error);
             })
+    }    
+
+    filterByTitle(title){
+        return this.state.jobs.find((elm) => elm.title === title)
     }
 
     handleLogout(event) {
@@ -174,7 +179,7 @@ class App extends Component {
                 
                 }        
         */
-
+        let currentUser = localStorage.getItem("username")
         let token = this.state.token
         if (token === 'undefined' || token === "" || !token) {
             return (<Login res={this.state.res} loginToApp={this.loginToApp} />)
@@ -202,7 +207,9 @@ class App extends Component {
                                     <Route exact path="/(jobs|)"
                                         render={(props) =>
                                             <React.Fragment>
-                                                <Category {...props} categories={this.state.categories} />
+                                                <Category {...props} 
+                                                categories={this.state.categories}
+                                                jobs = {this.state.jobs} />
                                             </React.Fragment>
                                         }
                                     />
@@ -211,12 +218,11 @@ class App extends Component {
                                     <Route exact path={"/jobs/:category"}
                                     render={(props) =>
                                         <React.Fragment>
-                                           
-                                        <Job {...props} 
+                                        <Location {...props}  
+                                        jobs = {this.state.jobs}                                      
                                         category = {props.match.params.category}
-                                        jobs={this.state.jobs} 
-                                        locations={this.state.locations}/> 
-                                       
+                                        locations={this.state.locations}
+                                        />                                        
                                         </React.Fragment>
                                     }
                                     />
@@ -226,12 +232,27 @@ class App extends Component {
                                     <Route exact path={"/jobs/:category/:location"}
                                     render={(props) => 
                                     <React.Fragment>
-                                        <Job {...props}
-                                        />
-
+                                        <JobList {...props}
+                                        jobs = {this.state.jobs}
+                                        category = {props.match.params.category}
+                                        location = {props.match.params.location}
+                                        />                                       
                                     </React.Fragment>}
                                     />
-                                    
+                                </Switch>
+
+                                <Switch>
+                                    <Route exact path={"/jobs/:category/:location/:title"}
+                                    render={(props) => 
+                                    <React.Fragment>
+                                        <Job {...props}
+                                        job = {this.filterByTitle(props.match.params.title)}   
+                                        jobs = {this.state.jobs}                                   
+                                        category = {props.match.params.category}
+                                        location = {props.match.params.location}
+                                        />                                       
+                                    </React.Fragment>}
+                                    />
                                 </Switch>
                                 
                             </div>
@@ -239,11 +260,18 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="username">
-                        <h3> Logged in as <br></br></h3>
-                        <h4>{localStorage.getItem("username")}</h4>
-                        <div className="backBtn">
+                    <div className="backBtn">
                             <button onClick={this.goBack}> <IoIosArrowBack></IoIosArrowBack>Back</button>
-                        </div></div>
+                        </div>
+                        <br></br>
+                        <h3> Logged in as <br></br></h3>
+                        <h4>{currentUser}</h4>
+                        <br></br>
+                        <a href="/"><h4>Create Job</h4></a>
+                        <a href="/"><h4>Look up a job</h4></a>
+                        <a href="/"><h4>View posted jobs</h4></a>
+                        
+                        </div>
                     <div className="logOut">
                         <form>
                             <button type="submit" onClick={this.handleLogout}>LOGOUT</button>

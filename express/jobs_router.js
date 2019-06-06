@@ -8,7 +8,7 @@ module.exports = (Jobs) => {
 
     var CategorySchema = new Schema({
         title: String,
-        description: String
+        description: String        
     })
 
     var LocationSchema = new Schema({

@@ -59,6 +59,7 @@ class AuthService {
 
     logout() {
         localStorage.setItem('token', "undefined");
+        localStorage.setItem("username", "");
     }
 
     fetch(url, options) {
