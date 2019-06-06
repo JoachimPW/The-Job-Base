@@ -77,7 +77,8 @@ let openPaths = [
     "/api/jobs",
     "/postedjobs",
     "/newjob",
-    "/search"
+    "/search",
+    "/favicon.ico"
 ];
 
 // Validate the user using authentication
