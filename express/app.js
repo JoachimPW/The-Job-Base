@@ -84,7 +84,8 @@ let openPaths = [
     "/search",
     "/favicon.ico",
     jobCatPath,
-    jobCatLocPath
+    jobCatLocPath,
+    jobCatLocPathJob
 ];
 
 // Validate the user using authentication
