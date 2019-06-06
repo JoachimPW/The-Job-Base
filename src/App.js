@@ -14,7 +14,6 @@ import PostedJobs from './PostedJobs'
 import SearchJob from './SearchJob'
 import Location from './Location'
 import { IoIosArrowBack } from "react-icons/io";
-
 import AuthService from './AuthService';
 
 class App extends Component {
