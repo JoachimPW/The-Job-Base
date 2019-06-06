@@ -191,24 +191,12 @@ class App extends Component {
     }
 
     render() {
-        /*
-                if (localStorage.getItem("token") === "undefined" || !localStorage.getItem("token") ) {
-                    return( <Login loginToApp={this.loginToApp}/>  )               
-                
-                }        
-        */
+     
         let currentUser = localStorage.getItem("username")
         let token = this.state.token
         if (token === 'undefined' || token === "" || !token) {
             return (<Login res={this.state.res} loginToApp={this.loginToApp} />)
-        }
-
-
-        // TODO: This app should render a Login component when the user
-        // TODO: is not logged in.
-        // TODO: Otherwise is should render the list as usual.
-
-        // TODO: Create a Login component
+        }      
 
         return (
             <React.Fragment>
