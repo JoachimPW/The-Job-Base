@@ -34,8 +34,10 @@ export default class Job extends Component {
                 <div className="category">
                     <h2>{elm.title}</h2>
                     <p>{elm.description}</p>
-                    <p>{elm.company}</p>
-                    <small>{elm.location}</small>
+                    <p>Category: {elm.category}</p>
+                    <p>Company: {elm.company}</p>
+                    <p>Email: {elm.email}</p>
+                    <small>Location: {elm.location}</small>
                 </div>
                 
             </React.Fragment>)

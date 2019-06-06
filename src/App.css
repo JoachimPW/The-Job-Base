@@ -74,3 +74,65 @@ h4 {
 .search {
     border:1px solid black;
 }
+
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('https://img.icons8.com/ios/26/000000/search.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+
+.newjob input {
+    width:100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+}
+
+.newjob textarea {
+    width:100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+}
+.newjob select {
+    width:100%;
+    padding: 10px 10px;
+    margin: 8px 0;
+}
+
+.newjob small {
+    text-align:center;
+}
+
+.postJob {
+    text-align:center;
+}
+.postJob button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.postJob button:hover {
+    background-color: #3B9E40
+}
+
+.errmsg {
+    color:red;
+}

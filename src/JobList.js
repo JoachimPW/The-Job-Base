@@ -17,7 +17,6 @@ export default class JobList extends Component {
         let items = jobss.filter((elm => {
             let category = this.props.match.params.category === elm.category
             let location = this.props.match.params.location === elm.location
-            console.log(category)
             return (category && location)
         }))
 

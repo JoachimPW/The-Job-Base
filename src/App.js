@@ -9,6 +9,9 @@ import AddTask from "./AddTask";
 import Login from './Login'
 import Job from './Job'
 import JobList from './JobList'
+import NewJob from './NewJob'
+import PostedJobs from './PostedJobs'
+import SearchJob from './SearchJob'
 import Location from './Location'
 import { IoIosArrowBack } from "react-icons/io";
 
@@ -16,8 +19,8 @@ import AuthService from './AuthService';
 
 class App extends Component {
 
-    API_URL = 'http://localhost:8080/api';
-
+    API_URL = process.env.REACT_APP_API_URL;
+    
     constructor(props) {
         super(props);
 
@@ -45,6 +48,7 @@ class App extends Component {
         this.getJobsFromCategory = this.getJobsFromCategory.bind(this);      
 
         this.filterByTitle = this.filterByTitle.bind(this);
+        this.postNewJob = this.postNewJob.bind(this);
 
 
     }
@@ -70,6 +74,21 @@ class App extends Component {
         this.getData();
         this.getJobs();
         this.getLocations();           
+    }
+
+    async postNewJob(title, description, category, email, location) {
+        await this.Auth.fetch(`${this.API_URL}/jobs/newJob`, { 
+            method: 'POST',          
+            body: JSON.stringify({
+                title: title,
+                description: description,
+                category: category,
+                company: localStorage.getItem("username"),
+                email: email,
+                location: location
+            })
+        })   
+
     }
 
     async loginToApp(username, password) {
@@ -204,6 +223,47 @@ class App extends Component {
                                 <br />
                                 <br />
                                 <Switch>
+                                    <Route exact path="/newjob"
+                                        render={(props) =>
+                                            <React.Fragment>
+                                                <NewJob {...props} 
+                                                categories={this.state.categories}
+                                                location={this.state.locations}
+                                                jobs = {this.state.jobs}
+                                                postNewJob={this.postNewJob} />
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </Switch>
+                                <Switch>
+                                    <Route exact path="/search"
+                                        render={(props) =>
+                                            <React.Fragment>
+                                                <SearchJob {...props} 
+                                                categories={this.state.categories}
+                                                location={this.state.locations}
+                                                jobs = {this.state.jobs}
+                                                postNewJob={this.postNewJob} />
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </Switch>
+
+                                <Switch>
+                                    <Route exact path="/postedjobs"
+                                        render={(props) =>
+                                            <React.Fragment>
+                                                <PostedJobs {...props} 
+                                                categories={this.state.categories}
+                                                category = {props.match.params.category}
+                                                location={this.state.locations}
+                                                jobs = {this.state.jobs}
+                                                 />
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </Switch>
+                                <Switch>
                                     <Route exact path="/(jobs|)"
                                         render={(props) =>
                                             <React.Fragment>
@@ -267,9 +327,9 @@ class App extends Component {
                         <h3> Logged in as <br></br></h3>
                         <h4>{currentUser}</h4>
                         <br></br>
-                        <a href="/"><h4>Create Job</h4></a>
-                        <a href="/"><h4>Look up a job</h4></a>
-                        <a href="/"><h4>View posted jobs</h4></a>
+                        <a href="/newjob"><h4>Create Job Post</h4></a>
+                        <a href="/search"><h4>Look up a job</h4></a>
+                        <a href="/postedjobs"><h4>View posted jobs</h4></a>
                         
                         </div>
                     <div className="logOut">
