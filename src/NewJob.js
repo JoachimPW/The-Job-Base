@@ -133,6 +133,7 @@ export default class NewJob extends Component {
             this.props.postNewJob(this.state.title, this.state.description, this.state.category, this.state.email, this.state.location)
             this.setState({
                 sucess: "Job Post Created!",
+                // Refresh in order to see the new posted job. Socket.io can fix this
                 LinkToJob: <Link onClick={() => window.location.refresh()} to={{ pathname: `/jobs/${this.state.category}/${this.state.location}/${this.state.title}` }} >
                 <h4>View your posted job</h4>
                 </Link>

@@ -47,12 +47,14 @@ class App extends Component {
 
         this.filterByTitle = this.filterByTitle.bind(this);
         this.postNewJob = this.postNewJob.bind(this);
-
-
     }
+
     SOCKET_URL = `${this.API_URL}/my_app`;
 
     componentDidMount() { 
+        this.setState({
+            username: localStorage.getItem("username")
+        }) 
               
         this.setState({
             token: localStorage.getItem("token")
@@ -297,12 +299,11 @@ class App extends Component {
                         </div>
                         <br></br>
                         <h3> Logged in as <br></br></h3>
-                        <h4>{currentUser}</h4>
+                        <h4>{this.state.username}</h4>
                         <br></br>
                         <a href="/newjob"><h4>Create Job Post</h4></a>
                         <a href="/search"><h4>Look up a job</h4></a>
-                        <a href="/postedjobs"><h4>View posted jobs</h4></a>
-                        
+                        <a href="/postedjobs"><h4>View posted jobs</h4></a>                        
                         </div>
                     <div className="logOut">
                         <form>

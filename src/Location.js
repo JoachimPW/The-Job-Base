@@ -5,11 +5,8 @@ export default class Location extends Component {
     constructor(props) {
         super(props)
         this.state = {}
-
         this.amountOfJobs = this.amountOfJobs.bind(this);
     }
-
-
 
     componentDidMount() {
         console.log("category:" + this.props.category)
@@ -19,15 +16,12 @@ export default class Location extends Component {
          const amount = this.props.jobs.filter(elm =>           
              elm.category === category &&
              elm.location === location)    
-             return amount.length
-        
-        
+             return amount.length      
     }
        // ${this.props.category}
     
 
     render() {
-
         let list = []
         this.props.locations.forEach((elm) => {
             list.push(<React.Fragment>
