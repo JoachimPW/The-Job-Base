@@ -62,7 +62,6 @@ mongoose.connect(process.env.dbUrl, (err) => {
 
 var Schema = mongoose.Schema;
 
-
 const jobCatPath = pathToRegexp('/jobs/:category');
 const jobCatLocPath = pathToRegexp('/jobs/:category/:location')
 const jobCatLocPathJob = pathToRegexp('/jobs/:category/:location/:title')
@@ -98,7 +97,6 @@ app.use((err, req, res, next) => {
     }
 });
 
-
 const users = [
     { id: 0, username: "krdo", password: '123'},
     { id: 1, username: "tosk", password: 'password'},
@@ -111,8 +109,6 @@ let Jobs = []
 
 
 /****** Routes ******/
-let tasksRouter = require('./tasks_router')(data, io);
-app.use('/api/tasks', tasksRouter);
 
 // Mongoose kald ind som data - 
 let usersRouter = require('./users_router')(users);
