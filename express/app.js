@@ -107,7 +107,6 @@ const data = []
 let Reviews = []
 let Jobs = []
 
-
 /****** Routes ******/
 
 // Mongoose kald ind som data - 

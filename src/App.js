@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { browserHistory } from 'react-router'
 import './App.css';
 import io from 'socket.io-client';
-import List from './List'
+
 import Category from './Category'
-import AddTask from "./AddTask";
 import Login from './Login'
 import Job from './Job'
 import JobList from './JobList'

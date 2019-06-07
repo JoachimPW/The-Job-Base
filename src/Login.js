@@ -57,7 +57,7 @@ export default class Login extends Component {
             <div className="col-md-6">
                 <form autoComplete="off">
                     <div className="form-group">
-                        <label for="Email">Username</label>
+                        <label for="Email">Company</label>
                         <input value={this.state.username} onChange={this.onChangeUsername} 
                             className="form-control" placeholder="Enter Username" />
                     </div>

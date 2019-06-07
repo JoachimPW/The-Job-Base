@@ -22,6 +22,7 @@ export default class Location extends Component {
     
 
     render() {
+
         let list = []
         this.props.locations.forEach((elm) => {
             list.push(<React.Fragment>
